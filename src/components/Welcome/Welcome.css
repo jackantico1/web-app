@@ -1,0 +1,24 @@
+.welcome {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 40%;
+    height: 300px;
+    margin-left: 30%;
+    margin-right: 30%;
+    margin-top: 50px;
+}
+
+.welcomeContainer1 {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 150px;
+}
+
+.welcomeContainer2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 80px;
+}

@@ -1,0 +1,19 @@
+.header {
+    height: 175px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    margin-left: 10px;
+    text-align: center;
+    font-family: 'Roboto Slab', serif;
+}
+
+.logoH1 {
+    margin: 0px;
+    font-size: 60px;
+}
+
+.logoH2 {
+    height: 60px;
+    margin-top: 15px;  
+}
