@@ -26,26 +26,48 @@ class Welcome extends Component {
   }
 
   handlePasswordChange = (event) => {
-    this.setState({password: event.target.value});
+    this.setState({password: event.target.value})
   }
 
   signInPressed = () => {
-    console.log("Sign in pressed")
+    let email = this.state.email
+    let password = this.state.password
+    firebase.auth().signInWithEmailAndPassword(email, password)
+      .then((user) => {
+        if (user != null) {
+          console.log("user is signed in")
+          this.props.handler(true)
+        } else {
+          console.log("user isn't signed in")
+        }
+      })
+      .catch(function(error) {
+        var errorCode = error.code
+        var errorMessage = error.message
+        console.log(errorCode)
+        console.log(errorMessage)
+    })
   }
 
   signUpPressed = () => {
-    console.log("Sign up pressed")
+    console.log("signUpPressed called")
     let email = this.state.email
     let password = this.state.password
-    console.log("email is " + email)
-    console.log("password is " + password)
-    console.log("Will try to create user now")
-    firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
-      var errorCode = error.code;
-      var errorMessage = error.message;
-      console.log(errorCode)
-      console.log(errorMessage)
-    });
+    firebase.auth().createUserWithEmailAndPassword(email, password)
+      .then((user) => {
+        if (user != null) {
+          console.log("user is signed in")
+          this.props.handler(true)
+        } else {
+          console.log("user isn't signed in")
+        }
+      })
+      .catch(function(error) {
+        var errorCode = error.code
+        var errorMessage = error.message
+        console.log(errorCode)
+        console.log(errorMessage)
+    })
   }
 
   render() {
