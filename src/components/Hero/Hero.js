@@ -11,16 +11,26 @@ class Hero extends Component {
     numOfHits: 0
   }
 
-  handleButtonHit = () => {
+  componentDidMount() {
     var userId = firebase.auth().currentUser.uid;
     firebase.database().ref('/users/' + userId).once('value').then((snapshot) => {
-      console.log(snapshot)
       var hitNum = (snapshot.val() && snapshot.val().numOfHits) || 0;
       this.setState({numOfHits: hitNum});
     });  
-    firebase.database().ref('users/' + userId).set({
-      numOfHits: this.state.numOfHits
-    });
+  }
+
+  handleButtonHit = () => {
+    console.log("handleButtonHitCalled")
+    var userId = firebase.auth().currentUser.uid;
+    firebase.database().ref('/users/' + userId).once('value').then((snapshot) => {
+      var hitNum = (snapshot.val() && snapshot.val().numOfHits) || 0;
+      var newHitNum = hitNum + 1
+      this.setState({numOfHits: newHitNum})
+      console.log("setState called, newHitNum:" + newHitNum)
+      firebase.database().ref('users/' + userId).set({
+        numOfHits: this.state.numOfHits
+      })
+    })
   }
 
   signOutPressed = () => {
